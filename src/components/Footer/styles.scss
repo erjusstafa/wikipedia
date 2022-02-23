@@ -1,3 +1,5 @@
+@import "../../constants/variables";
+
 .headerWrapper {
   position: absolute;
   bottom: 0;
@@ -8,14 +10,31 @@
   .linkSocialMedia {
     display: flex;
     flex-direction: column;
+    background-color: $white-color;
     > i {
-      margin: 15px;
+      width: 40px;
+      height: 43px;
+      color: $black-color;
+      display: grid;
+      place-content: center;
+      border-bottom: 1px solid rgb(107, 107, 107);
     }
   }
   .copyright {
     margin: auto 10px;
     > p {
       transform: rotate(90deg);
+      color: $white-color;
+    }
+    .copyright--line--one {
+      width: 48px;
+      color: #ffffff;
+      transform: rotate(90deg) translateX(-35px);
+    }
+    .copyright--line--two {
+      width: 20px;
+      color: $white-color;
+      transform: rotate(90deg) translateX(17px);
     }
   }
 }

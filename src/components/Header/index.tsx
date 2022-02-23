@@ -10,11 +10,11 @@ function Header(): ReactElement {
           <img src={image.logo} alt="logo" />
         </div>
         <div className={styles.link}>
-          <Link to="home"   className={styles.linkItem}>
+          <Link to="/" className={styles.linkItem}>
             Home
           </Link>
-          <Link to="/favorite"  className={styles.linkItem} >
-          Favorite
+          <Link to="/favorite" className={styles.linkItem}>
+            Favorite
           </Link>
         </div>
       </div>

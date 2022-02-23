@@ -7,6 +7,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  background-image: url("https://blackwoodgroup.com/img/backgrounds/home-hero.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 
   &--container {
     position: relative;
