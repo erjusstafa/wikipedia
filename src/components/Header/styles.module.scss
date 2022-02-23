@@ -1,0 +1,30 @@
+@import "../../constants/variables";
+
+.headerWrapper {
+  height: $header-height;
+  background-color: transparent;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  @media (max-width: 700px) {
+    padding: 0 20px;
+  }
+  .logo {
+    margin: 25px;
+  }
+  .link {
+    margin: 25px;
+
+    .linkItem {
+      text-decoration: none;
+    }
+    .linkItem:first-child {
+      margin-right: 70px;
+      @media (max-width: 700px) {
+        margin-right: 40px;
+      }
+    }
+  }
+}

@@ -1,0 +1,21 @@
+.headerWrapper {
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  justify-content: space-between;
+  background-color: transparent;
+  width: 100%;
+  .linkSocialMedia {
+    display: flex;
+    flex-direction: column;
+    > i {
+      margin: 15px;
+    }
+  }
+  .copyright {
+    margin: auto 10px;
+    > p {
+      transform: rotate(90deg);
+    }
+  }
+}
