@@ -1,8 +1,18 @@
-import React, { ChangeEvent, Fragment, ReactElement, useEffect, useState } from "react";
+import React, {
+  ChangeEvent,
+  Fragment,
+  ReactElement,
+  useEffect,
+  useState,
+} from "react";
 import "./styles.scss";
 import axios from "axios";
 import { useReduxDispatch, useReduxSelector } from "../../redux/hooks";
-import { DataItem, fetchWekipediaApi, IData } from "../../redux/features/dataSlice";
+import {
+  DataItem,
+  fetchWekipediaApi,
+  IData,
+} from "../../redux/features/dataSlice";
 import { queryByTitle } from "@testing-library/react";
 import List from "../List";
 import Loading from "../Loading";
@@ -33,6 +43,15 @@ function Home(): ReactElement {
     dispatch(fetchWekipediaApi(val));
   }, [dispatch]);
 
+  const filteredOptions = data?.query?.search.filter((item: any) => {
+    {
+      console.log("fil", item);
+    }
+    return (item?.snippet.toLowerCase() || item?.title.toLowerCase()).includes(
+      val.toLowerCase() || !val
+    );
+  });
+
   return (
     <Fragment>
       <div className="home--wrapper">
@@ -51,22 +70,35 @@ function Home(): ReactElement {
             <Loading />
           ) : (
             showData && (
-              <div className="box--list">
-                {
-                  /*      !val ? <h2>ska te dhena</h2>
-                 :  */
+              <div
+                style={{
+                  backgroundColor:
+                    data?.query?.search.length < 0 ? "red" : "blue",
+                }}
+                className="box--list"
+              >
+                {filteredOptions.length < 0 ? (
+                  <h1>hello</h1>
+                ) : (
                   Object.values(data?.query?.search || {})
                     .filter((item: any) =>
-                      (item?.snippet.toLowerCase() || item?.title.toLowerCase()).includes(val.toLowerCase())
+                      (
+                        item?.snippet.toLowerCase() || item?.title.toLowerCase()
+                      ).includes(val.toLowerCase())
                     )
                     .map((item: DataItem | any, index: number) => {
+                      console.log(
+                        "data?.query?.search.length ",
+                        data?.query?.search.length
+                      );
+
                       return (
                         <div key={index}>
                           <List item={item} />
                         </div>
                       );
                     })
-                }
+                )}
               </div>
             )
           )}

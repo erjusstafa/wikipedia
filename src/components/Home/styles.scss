@@ -32,7 +32,11 @@
       height: 400px;
       overflow-x: hidden;
       overflow-y: scroll;
-      background-color: rgb(255, 255, 255);
+      z-index: 99999;
+
+      @media (min-width: 500px) and (max-width: 800px) {
+        height: 140px;
+      }
     }
   }
 }
