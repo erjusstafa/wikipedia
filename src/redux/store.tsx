@@ -6,7 +6,7 @@ import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
 export const persistConfig = {
   key: "root",
   storage: storageSession,
-  whitelist: [""],
+  whitelist: ["wikipedia"],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

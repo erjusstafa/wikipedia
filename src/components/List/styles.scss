@@ -1,0 +1,27 @@
+.list--container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 30px 0;
+  > span {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    justify-content: center;
+    .list--container--link {
+      cursor: pointer;
+      text-decoration: underline;
+      font-weight: 700;
+      &--id {
+        cursor: pointer;
+        text-decoration: none !important;
+        font-weight: 400;
+        color: #006621;
+      }
+    }
+  }
+
+  > i {
+    margin: auto 0;
+  }
+}

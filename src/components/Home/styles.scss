@@ -1,10 +1,17 @@
 .home--wrapper {
   display: grid;
   place-items: center;
-
   .home--wrapper--container {
     position: absolute;
     top: 140px;
+
+    position: absolute;
+    top: 140px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
     .input--search {
       outline: none;
       border: none;
@@ -17,5 +24,23 @@
       padding: 10px 30px;
       cursor: pointer;
     }
+
+    .box--list {
+      margin-top: 20px;
+      padding: 10px 30px;
+      width: 400px;
+      height: 400px;
+      overflow-x: hidden;
+      overflow-y: scroll;
+      background-color: rgb(255, 255, 255);
+    }
   }
+}
+
+::-webkit-scrollbar {
+  background-color: #435258;
+  width: 5px;
+}
+::-webkit-scrollbar-thumb {
+  background: #435258;
 }

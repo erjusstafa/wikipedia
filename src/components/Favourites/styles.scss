@@ -1,0 +1,57 @@
+.wrapp--fav--empty {
+  overflow-x: hidden;
+  overflow-y: hidden;
+  text-align: center;
+  position: relative;
+  top: 30%;
+  color: white;
+}
+.wrapp--fav {
+  max-width: 600px;
+  max-height: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  overflow-x: hidden;
+  overflow-y: scroll;
+
+  @media (max-width: 1000px) {
+    max-width: 400px;
+    max-height: 400px;
+  }
+
+  .list--container {
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 10px auto;
+    padding: 10px 20px;
+    background-color: #eeeeee;
+    border-radius: 15px;
+
+    > span {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      justify-content: center;
+      .list--container--link {
+        cursor: pointer;
+        text-decoration: underline;
+        font-weight: 700;
+        &--id {
+          cursor: pointer;
+          text-decoration: none !important;
+          font-weight: 400;
+          color: #006621;
+        }
+      }
+    }
+
+    > i {
+      margin: auto 0;
+    }
+  }
+}

@@ -7,7 +7,7 @@ function Header(): ReactElement {
     <Fragment>
       <div className={styles.headerWrapper}>
         <div className={styles.logo}>
-          <img src={image.logo} alt="logo" />
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Wikipedia-logo-v2.svg/657px-Wikipedia-logo-v2.svg.png" alt="logo" />
         </div>
         <div className={styles.link}>
           <Link to="/" className={styles.linkItem}>

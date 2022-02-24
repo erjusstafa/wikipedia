@@ -11,12 +11,14 @@
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+  overflow: hidden;
 
   &--container {
     position: relative;
     width: calc(100% - 300px);
     height: calc(100% - 200px);
     box-shadow: 2px 13px 40px rgb(128, 128, 128);
+    background-color: rgba(66, 66, 66, 0.5);
 
     @media (max-width: 800px) {
       width: calc(100% - 100px);
