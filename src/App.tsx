@@ -4,7 +4,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Home from "./components/Home";
-import Cursor from "./components/Cursor";
 import Favourites from "./components/Favourites";
 
 function App() {
@@ -12,7 +11,6 @@ function App() {
     <div className="app--wrapper">
     <div className="app--wrapper--container">
       <BrowserRouter>
-      <Cursor />
         <Header />
         <Routes>
           <Route path={"/"} element={<Home />} />
