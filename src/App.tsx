@@ -10,25 +10,18 @@ import Favourites from "./components/Favourites";
 function App() {
   return (
     <div className="app--wrapper">
-      <div className="app--wrapper--container">
-        <BrowserRouter>
-        <Cursor />
-          <Header />
-
-          <Routes>
-            <Route path={"/"} element={<Home />} />
-            <Route path={"/favorite"} element={<Favourites />} />
-            {/*
-          <Route
-            path={"character"}
-            element={isAuth === true ? <Home /> : null}
-          />
-          <Route path={"character/:id"} element={<CharacterItem />} /> */}
-          </Routes>
-          <Footer />
-        </BrowserRouter>
-      </div>
+    <div className="app--wrapper--container">
+      <BrowserRouter>
+      <Cursor />
+        <Header />
+        <Routes>
+          <Route path={"/"} element={<Home />} />
+          <Route path={"/favorite"} element={<Favourites />} />
+        </Routes>
+        <Footer />
+      </BrowserRouter>
     </div>
+  </div>
   );
 }
 

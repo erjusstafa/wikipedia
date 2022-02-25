@@ -1,12 +1,11 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import axios from "axios";
 
-export const fetchWekipediaApi = createAsyncThunk("wikipedia/fetchWekipediaApi", async (val  :string) => {
+export const fetchWekipediaApi = createAsyncThunk("wikipedia/fetchWekipediaApi", async (val: string) => {
   return await fetch(
-    `https://en.wikipedia.org/w/api.php?action=query&list=search&prop=info&inprop=url&utf8=&format=json&origin=*&srlimit=490&srsearch=a${val}`
+    `https://en.wikipedia.org/w/api.php?action=query&list=search&prop=info&inprop=url&utf8=&format=json&origin=*&srlimit=490&srsearch=${val}`
   )
     .then((res) => res.json())
-    .catch((err: string) => console.log(" error bro"));
+    .catch((err: string) => console.log("The API isn't fetching", err));
 });
 
 interface IDataWrap {
@@ -48,7 +47,7 @@ const initialState: any | IDataWrap = {
   data: [],
   fav: [],
   loading: false,
-  error: "You have an error",
+  error: "The API isn't fetching",
 };
 
 export const dataSlice = createSlice({
@@ -78,7 +77,7 @@ export const dataSlice = createSlice({
     },
   },
   extraReducers: {
-    [fetchWekipediaApi.pending.toString()]: (state, { payload }) => {
+    [fetchWekipediaApi.pending.toString()]: (state, { payload }: PayloadAction<IDataWrap>) => {
       console.log("Pending");
       state.loading = true;
       state.error = "";
@@ -89,7 +88,7 @@ export const dataSlice = createSlice({
       state.loading = false;
       state.error = "";
     },
-    [fetchWekipediaApi.rejected.toString()]: (state, { payload }) => {
+    [fetchWekipediaApi.rejected.toString()]: (state, { payload }: PayloadAction<IDataWrap>) => {
       console.log("Rejecteed!");
       state.loading = false;
       state.error = payload;
@@ -97,6 +96,6 @@ export const dataSlice = createSlice({
   },
 });
 
-export const { addFav ,delFav} = dataSlice.actions;
+export const { addFav, delFav } = dataSlice.actions;
 
 export default dataSlice.reducer;

@@ -5,7 +5,7 @@ function Footer(): ReactElement {
   const current = new Date();
   const date = `${current.getFullYear()}`;
   return (
-    <div className="headerWrapper">
+    <div className="footerWrapper">
       <div className="linkSocialMedia">
         <i className="fab fa-instagram"></i>
         <i className="fab fa-snapchat"></i>

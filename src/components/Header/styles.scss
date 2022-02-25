@@ -13,19 +13,22 @@
   }
   .logo {
     margin: 25px;
+    z-index: 9999;
+
     > img {
       width: 50px;
-      animation: roll 0.7s linear infinite;
+      animation: roll 2s linear infinite;
       transform-style: preserve-3d;
+      transform: rotate(365deg) translateZ(0);
 
-      @keyframes roll {
+      /*  @keyframes roll {
         0% {
-          background-position: 0 0;
+          transform: rotateZ(0);
         }
         100% {
-          background-position: 650px 0;
+          transform: rotateZ(365deg);
         }
-      }
+      } */
     }
   }
   .link {
@@ -34,6 +37,14 @@
     .linkItem {
       text-decoration: none;
       color: $white-color;
+      &:hover {
+        color: orange;
+        transition: 0.2s;
+      }
+
+      &.active {
+        color: orange;
+      }
     }
     .linkItem:first-child {
       margin-right: 70px;

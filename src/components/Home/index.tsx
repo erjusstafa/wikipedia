@@ -1,28 +1,17 @@
-import React, {
-  ChangeEvent,
-  Fragment,
-  ReactElement,
-  useEffect,
-  useState,
-} from "react";
+import React, { ChangeEvent, Fragment, ReactElement, useCallback, useEffect, useState } from "react";
 import "./styles.scss";
-import axios from "axios";
 import { useReduxDispatch, useReduxSelector } from "../../redux/hooks";
-import {
-  DataItem,
-  fetchWekipediaApi,
-  IData,
-} from "../../redux/features/dataSlice";
-import { queryByTitle } from "@testing-library/react";
+import { DataItem, fetchWekipediaApi } from "../../redux/features/dataSlice";
 import List from "../List";
 import Loading from "../Loading";
 
 function Home(): ReactElement {
   const dispatch = useReduxDispatch();
-  const { data, loading } = useReduxSelector((state) => state.wikipedia);
+  const { data, loading, error } = useReduxSelector((state) => state.wikipedia);
 
   const [val, setVal] = useState<string>("");
   const [showData, setShowData] = useState<boolean>(false);
+  const [historySearch, setHistorySearch] = useState<any>([]);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const search = event.target.value;
@@ -32,6 +21,8 @@ function Home(): ReactElement {
     } else {
       setShowData(false);
     }
+    const newHis = [...historySearch, val];
+    setHistorySearch(newHis);
   };
 
   const hanldeSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -40,17 +31,15 @@ function Home(): ReactElement {
   };
 
   useEffect(() => {
-    dispatch(fetchWekipediaApi(val));
+    if (!data ) {
+      console.log(error);
+    } else {
+      dispatch(fetchWekipediaApi(val));
+    }
   }, [dispatch]);
 
-  const filteredOptions = data?.query?.search.filter((item: any) => {
-    {
-      console.log("fil", item);
-    }
-    return (item?.snippet.toLowerCase() || item?.title.toLowerCase()).includes(
-      val.toLowerCase() || !val
-    );
-  });
+  console.log("data", data);
+
 
   return (
     <Fragment>
@@ -70,34 +59,21 @@ function Home(): ReactElement {
             <Loading />
           ) : (
             showData && (
-              <div
-                style={{
-                  backgroundColor:
-                    data?.query?.search.length < 0 ? "red" : "blue",
-                }}
-                className="box--list"
-              >
-                {filteredOptions.length < 0 ? (
-                  <h1>hello</h1>
-                ) : (
+              <div className={val.length > 3 ? "box--list active" : "box--list"}>
+                {data?.query?.search.length !== 0 ? (
                   Object.values(data?.query?.search || {})
-                    .filter((item: any) =>
-                      (
-                        item?.snippet.toLowerCase() || item?.title.toLowerCase()
-                      ).includes(val.toLowerCase())
+                    .filter((item: DataItem | any) =>
+                      (item?.snippet.toLowerCase() || item?.title.toLowerCase()).includes(val.toLowerCase())
                     )
                     .map((item: DataItem | any, index: number) => {
-                      console.log(
-                        "data?.query?.search.length ",
-                        data?.query?.search.length
-                      );
-
                       return (
                         <div key={index}>
                           <List item={item} />
                         </div>
                       );
                     })
+                ) : (
+                  <h2>The "{val}"" not exist!</h2>
                 )}
               </div>
             )

@@ -1,3 +1,4 @@
+import { Tooltip } from "@mui/material";
 import React, { ReactElement, useState } from "react";
 import { addFav, DataItem, IData } from "../../redux/features/dataSlice";
 import { useReduxDispatch } from "../../redux/hooks";
@@ -32,13 +33,14 @@ function List({ item }: IList): ReactElement {
           https://en.wikipedia.org/?curid={item.pageid}
         </a>
       </span>
-      <i
-        style={{ color: removeColor ? favColor : "rgb(183 183 184)" }}
-        onClick={handleAddFav}
-        className="fas fa-star"
-      ></i>
-      {/*       <p>{item.snippet}</p>
-       */}{" "}
+
+      <Tooltip title="Delete" placement="top-end" arrow>
+        <i
+          style={{ cursor: "pointer", color: removeColor ? favColor : "rgb(183 183 184)" }}
+          onClick={handleAddFav}
+          className="fas fa-star"
+        />
+      </Tooltip>
     </div>
   );
 }

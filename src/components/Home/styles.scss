@@ -1,3 +1,5 @@
+@import "../../constants/variables";
+
 .home--wrapper {
   display: grid;
   place-items: center;
@@ -33,9 +35,23 @@
       overflow-x: hidden;
       overflow-y: scroll;
       z-index: 99999;
-
+      position: relative;
+      background-color: $white-color;
       @media (min-width: 500px) and (max-width: 800px) {
-        height: 140px;
+        width: 300px;
+      }
+      @media (max-width: 500px) {
+        height: 290px;
+        width: 300px;
+      }
+      > h2 {
+        text-align: center;
+        position: relative;
+        top: 30px;
+      }
+
+      &.active {
+        transition: 0.3s;
       }
     }
   }
