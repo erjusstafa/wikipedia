@@ -1,3 +1,4 @@
+import { Tooltip } from "@mui/material";
 import React, { Fragment } from "react";
 import { DataItem, delFav } from "../../redux/features/dataSlice";
 import { useReduxDispatch, useReduxSelector } from "../../redux/hooks";
@@ -30,13 +31,15 @@ function Favourites() {
                 https://en.wikipedia.org/?curid={item.pageid}
               </a>
             </span>
-            <i
+           
+
+<Tooltip title="Delete Item" arrow sx={{zIndex  : 99999}}>
+<i
               style={{ color: "red", cursor: "pointer" }}
               onClick={() => dispatch(delFav(item))}
               className="fas fa-star"
-            ></i>
-            {/*       <p>{item.snippet}</p>
-             */}{" "}
+            />
+      </Tooltip>
           </div>
         ))
       )}

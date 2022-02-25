@@ -34,7 +34,7 @@ function List({ item }: IList): ReactElement {
         </a>
       </span>
 
-      <Tooltip title="Delete" placement="top-end" arrow>
+      <Tooltip title="Add To Fav" arrow sx={{zIndex  : 99999}}>
         <i
           style={{ cursor: "pointer", color: removeColor ? favColor : "rgb(183 183 184)" }}
           onClick={handleAddFav}

@@ -7,7 +7,7 @@ import Loading from "../Loading";
 
 function Home(): ReactElement {
   const dispatch = useReduxDispatch();
-  const { data, loading, error } = useReduxSelector((state) => state.wikipedia);
+  const { data, loading } = useReduxSelector((state) => state.wikipedia);
 
   const [val, setVal] = useState<string>("");
   const [showData, setShowData] = useState<boolean>(false);
@@ -15,9 +15,12 @@ function Home(): ReactElement {
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const search = event.target.value;
+
+    //call API from redux-toolkit
     setVal(search);
     if (search.length > 3) {
       setShowData(true);
+      dispatch(fetchWekipediaApi(search));
     } else {
       setShowData(false);
     }
@@ -25,27 +28,16 @@ function Home(): ReactElement {
     setHistorySearch(newHis);
   };
 
-  const hanldeSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setVal("");
   };
 
-  useEffect(() => {
-    if (!data ) {
-      console.log(error);
-    } else {
-      dispatch(fetchWekipediaApi(val));
-    }
-  }, [dispatch]);
-
-  console.log("data", data);
-
-
   return (
     <Fragment>
       <div className="home--wrapper">
-        <div className="home--wrapper--container">
-          <form onSubmit={() => hanldeSubmit}>
+        <div className="home--wrapper--container--two">
+          <form onSubmit={() => handleSubmit}>
             <input
               type="text"
               className="input--search"
@@ -53,6 +45,7 @@ function Home(): ReactElement {
               value={val}
               onChange={handleChange}
             />
+            <div className="search"></div>
           </form>
 
           {loading ? (
@@ -60,7 +53,8 @@ function Home(): ReactElement {
           ) : (
             showData && (
               <div className={val.length > 3 ? "box--list active" : "box--list"}>
-                {data?.query?.search.length !== 0 ? (
+                <img  className="logo--box" src="https://pngimg.com/uploads/wikipedia/wikipedia_PNG40.png" alt="" />
+                {data?.query?.search.length > 0 ? (
                   Object.values(data?.query?.search || {})
                     .filter((item: DataItem | any) =>
                       (item?.snippet.toLowerCase() || item?.title.toLowerCase()).includes(val.toLowerCase())
@@ -73,7 +67,7 @@ function Home(): ReactElement {
                       );
                     })
                 ) : (
-                  <h2>The "{val}"" not exist!</h2>
+                  <h2>The word " {val} " not exist in API!</h2>
                 )}
               </div>
             )

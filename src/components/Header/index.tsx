@@ -2,12 +2,15 @@ import React, { Fragment, ReactElement, useState } from "react";
 import "./styles.scss";
 import image from "../../constants/images";
 import { Link } from "react-router-dom";
+import { useReduxSelector } from "../../redux/hooks";
 interface IActive {
   home: number;
   favourite: number;
 }
 
 function Header(): ReactElement {
+  const { fav } = useReduxSelector((state) => state.wikipedia);
+
   const [active, setActive] = useState<IActive>({
     home: 0,
     favourite: 1,
@@ -21,7 +24,7 @@ function Header(): ReactElement {
       <div className="headerWrapper">
         <div className="logo">
           <img
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Wikipedia-logo-v2.svg/657px-Wikipedia-logo-v2.svg.png"
+            src={"https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Wikipedia-logo-v2.svg/657px-Wikipedia-logo-v2.svg.png" || image.logo }
             alt="logo"
           />
         </div>
@@ -39,6 +42,7 @@ function Header(): ReactElement {
             className={active.favourite == 1 ? "linkItem active" : "linkItem"}
           >
             Favorite
+            <span className="length--fav" > {fav.length}</span>
           </Link>
         </div>
       </div>

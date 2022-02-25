@@ -20,15 +20,6 @@
       animation: roll 2s linear infinite;
       transform-style: preserve-3d;
       transform: rotate(365deg) translateZ(0);
-
-      /*  @keyframes roll {
-        0% {
-          transform: rotateZ(0);
-        }
-        100% {
-          transform: rotateZ(365deg);
-        }
-      } */
     }
   }
   .link {
@@ -37,6 +28,7 @@
     .linkItem {
       text-decoration: none;
       color: $white-color;
+      position: relative;
       &:hover {
         color: orange;
         transition: 0.2s;
@@ -45,6 +37,13 @@
       &.active {
         color: orange;
       }
+
+      .length--fav {
+        position: absolute;
+        top: -10px;
+        color: aliceblue;
+        font-weight: bolder;
+      }
     }
     .linkItem:first-child {
       margin-right: 70px;
@@ -52,5 +51,17 @@
         margin-right: 40px;
       }
     }
+  }
+}
+
+@keyframes big {
+  0% {
+    transform: scale(0);
+  }
+  0% {
+    transform: scale(1.2);
+  }
+  0% {
+    transform: scale(1);
   }
 }

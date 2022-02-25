@@ -7,6 +7,8 @@
   justify-content: space-between;
   background-color: transparent;
   width: 100%;
+  border-top: 1px solid rgb(92, 92, 92);
+  background-color: rgb(27, 27, 27);
   .linkSocialMedia {
     display: flex;
     flex-direction: column;
@@ -25,6 +27,55 @@
       }
     }
   }
+
+  .wrapp--events {
+    display: flex;
+    justify-content: space-evenly;
+    align-content: center;
+    flex-flow: wrap row;
+    width: 90%;
+    .events {
+      color: $white-color;
+      display: block;
+      margin: auto 0;
+      line-height: 10px;
+      @media (max-width: 800px) {
+        line-height: 5px;
+      }
+      > strong {
+        font-weight: 800;
+      }
+
+      > p {
+        color: rgb(163, 163, 163);
+      }
+    }
+
+    .events--one {
+      color: $white-color;
+      display: block;
+      margin: auto 0;
+      line-height: 20px;
+
+      @media (max-width: 800px) {
+        line-height: 10px;
+      }
+      > strong {
+        font-weight: 800;
+      }
+
+      > p {
+        b {
+          color: rgb(189, 160, 105);
+        }
+        color: rgb(163, 163, 163);
+      }
+      @media (max-width: 640px) {
+        display: none;
+      }
+    }
+  }
+
   .copyright {
     margin: auto 10px;
     > p {
@@ -32,14 +83,15 @@
       color: $white-color;
     }
     .copyright--line--one {
-      width: 48px;
-      color: #ffffff;
-      transform: rotate(90deg) translateX(-35px);
+      width: 10px;
+      height: 10px;
+      background-color: #ffffff;
+      transform: translateY(-10px) translateX(-2px);
     }
     .copyright--line--two {
       width: 20px;
       color: $white-color;
-      transform: rotate(90deg) translateX(17px);
+      transform: rotate(90deg) translateX(12px) translatey(2px);
     }
   }
 }
